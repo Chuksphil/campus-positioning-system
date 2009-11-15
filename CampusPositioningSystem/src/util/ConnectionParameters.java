@@ -17,15 +17,17 @@ public class ConnectionParameters {
 	 * @throws SQLException
 	 * @throws ClassNotFoundException
 	 */
-	public static Connection getPostgisConnection() throws SQLException, ClassNotFoundException{
+	public static Connection getConnection() throws SQLException, ClassNotFoundException{
 		Class.forName("org.postgresql.Driver"); 
 	    String url = "jdbc:postgresql://localhost:5432/postgis";
 	    
 	    return DriverManager.getConnection(url, "user", "pass");
 	}
+	
+	
 	public static void main(String[] args){
 		try{
-			Connection conn = getPostgisConnection();
+			Connection conn = getConnection();
 			System.out.println(conn.getCatalog());
 			conn.close();
 		}catch(Exception e){

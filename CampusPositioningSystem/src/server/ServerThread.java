@@ -5,7 +5,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.sql.Connection;
 
+import util.ConnectionParameters;
 import util.ReaderUtils;
 
 import message.Request;
@@ -25,12 +27,17 @@ public class ServerThread extends Thread
 
     public void run() 
     {   
-    	String clientName = socket.getLocalAddress().getHostAddress();
-    	
+    	String clientName = socket.getLocalAddress().getHostAddress();    	
     	System.out.println("new client " + clientName);
+    	
+    	
     	
 		try 
 		{
+			//get a connection to the DB for the client
+	    	Connection con = ConnectionParameters.getConnection();
+			
+	    	//in and out tcp streams for the client
 		    PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
 		    BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 	
@@ -42,7 +49,7 @@ public class ServerThread extends Thread
 			    System.out.println("request from " + clientName);
 			    
 			    //create response for the given message
-			    Response resp = proto.processInput(req);
+			    Response resp = proto.processInput(req, con);
 			    
 			    //send response and end with null terminator
 			    String responseString = resp.ToXML();
@@ -57,13 +64,13 @@ public class ServerThread extends Thread
 		    
 		    out.close();
 		    in.close();
-		    socket.close();
-		    
+		    socket.close();		    
+		    con.close();		    
 
 		    System.out.println("closed connection to " + clientName);
 	
 		}
-		catch (IOException e) 
+		catch (Exception e) 
 		{
 		    e.printStackTrace();
 		}
