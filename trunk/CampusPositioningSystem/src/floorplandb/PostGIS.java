@@ -37,7 +37,7 @@ public class PostGIS {
 			};
 			
 			//connect to the db and populate the AccessPoint objects using the mac addresses
-			Connection conn = ConnectionParameters.getPostgisConnection();
+			Connection conn = ConnectionParameters.getConnection();
 			PostGIS self = new PostGIS();
 			List<AccessPoint> list = self.getAPs(conn, macs);
 			for(AccessPoint ap: list){

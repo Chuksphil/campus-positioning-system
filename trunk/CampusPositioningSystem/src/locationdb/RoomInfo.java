@@ -59,7 +59,7 @@ public class RoomInfo
 	 */
 	public static void main(String[] args){
 		try{
-			Connection conn = ConnectionParameters.getPostgisConnection();
+			Connection conn = ConnectionParameters.getConnection();
 			
 			String roomNum = findRoomNumber("Lab", conn);			
 			System.out.println("FindRoomNumber Results: " + roomNum);
