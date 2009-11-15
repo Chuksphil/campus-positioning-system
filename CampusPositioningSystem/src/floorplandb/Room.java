@@ -1,4 +1,4 @@
-package type;
+package floorplandb;
 
 import com.vividsolutions.jts.geom.Geometry;
 import com.vividsolutions.jts.geom.Polygon;
