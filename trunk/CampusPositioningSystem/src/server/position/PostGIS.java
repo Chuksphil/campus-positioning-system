@@ -1,4 +1,4 @@
-package floorplandb;
+package server.position;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -56,17 +56,19 @@ public class PostGIS {
 			List<Room> rooms = self.getIntersectingRooms(conn, (Polygon)convex);
 			System.out.println(convex.toString());
 			System.out.println(convex.getCentroid().toString());
+			
+			System.out.println("---------ALL ROOMS------------------");
 			for(Room r: rooms){
 //				System.out.println(r.getBuildingNumber()+" - "+r.getRoom());
 				System.out.println(r.getBoundary().toText());
 			}
 			System.out.println("---------------------------");
 			
-			//then you might want to clip the room polygons to the convex hull for fun or something
-			self.clipRooms(rooms, convex);//WARNING: this changes the Room objects
-			for(Room r: rooms){
-				System.out.println(r.getBoundary().toText());
-			}
+//			//then you might want to clip the room polygons to the convex hull for fun or something
+//			self.clipRooms(rooms, convex);//WARNING: this changes the Room objects
+//			for(Room r: rooms){
+//				System.out.println(r.getBoundary().toText());
+//			}
 			
 			conn.close();
 		}catch(Exception e){
@@ -95,7 +97,8 @@ public class PostGIS {
 	public List<Room> getIntersectingRooms(Connection conn, Geometry region)throws Exception{
 		ArrayList<Room> rooms = new ArrayList<Room>();
 		WKBReader reader = new WKBReader();
-		String query = "select asbinary(r.the_geom), r.bldg_num, r.room, r.floor from wps.rooms r where not r.room = '' and ST_Intersects(r.the_geom,geomfromtext('"+region.toText()+"'))";
+		//String query = "select asbinary(r.the_geom), r.bldg_num, r.room, r.floor from wps.rooms r where not r.room = '' and ST_Intersects(r.the_geom,geomfromtext('"+region.toText()+"'))";
+		String query = "select asbinary(r.the_geom), r.bldg_num, r.room, r.floor from wps.rooms r";
 		ResultSet rs = conn.createStatement().executeQuery(query);
 		//Room(Polygon boundary, String buildingNumber, String room, String floor)
 		while(rs.next()){

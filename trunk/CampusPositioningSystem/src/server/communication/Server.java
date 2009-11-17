@@ -1,7 +1,8 @@
-package server;
+package server.communication;
 
 import java.io.IOException;
 import java.net.ServerSocket;
+
 
 public class Server 
 {
