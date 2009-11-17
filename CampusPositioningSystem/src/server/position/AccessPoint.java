@@ -1,4 +1,4 @@
-package floorplandb;
+package server.position;
 
 import com.vividsolutions.jts.geom.Coordinate;
 import com.vividsolutions.jts.geom.Point;

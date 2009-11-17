@@ -1,4 +1,4 @@
-package locationdb;
+package server.locations;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

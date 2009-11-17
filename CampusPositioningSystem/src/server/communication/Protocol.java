@@ -1,10 +1,11 @@
-package server;
+package server.communication;
 
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import locationdb.RoomInfo;
+import server.locations.RoomInfo;
+
 import message.AccessPoint;
 import message.Request;
 import message.Response;
