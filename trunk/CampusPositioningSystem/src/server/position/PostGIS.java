@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-import util.ConnectionParameters;
+import server.ConnectionParameters;
 
 
 import com.vividsolutions.jts.algorithm.ConvexHull;
