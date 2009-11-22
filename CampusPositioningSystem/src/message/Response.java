@@ -1,6 +1,5 @@
 package message;
 
-import java.util.ArrayList;
 
 import com.thoughtworks.xstream.XStream;
 
@@ -26,7 +25,6 @@ public class Response
 	
 	private ResponseType type;
 	private String message;
-	ArrayList<String> closeTags = null;
 	
 	public ResponseType getType()
 	{
@@ -46,13 +44,5 @@ public class Response
 		message = value;
 	}
 
-	public ArrayList<String> getCloseTags()
-	{
-		return closeTags;
-	}
-	public void setCloseTags(ArrayList<String> value)
-	{
-		closeTags = value;
-	}
 
 }

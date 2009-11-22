@@ -66,25 +66,6 @@ public class Request
 	{
 		userID = value;
 	}
-	
-	
-	/**
-	 * Tests RoomInfo class functionality
-	 * @param args
-	 */
-	public static void main(String[] args)
-	{		
-		Request req = new Request();
-		AccessPoint a = new AccessPoint();
-		a.setMacAdress("a_mac_addr");
-		a.setSignalStrenght("6");
-		req.accessPoints().add(a);
-		req.setRoomNumber("123");
-		
-		
-		
-		System.out.println(req.ToXML());
-		
-	}
+
 }
 

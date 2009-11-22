@@ -4,7 +4,17 @@ public class AccessPoint
 {	
 	
 	private String macAdress;
-	private String signalStrenght;
+	private int signalStrenght;
+	
+	
+	
+	public AccessPoint(String macAdress, int signalStrenght) 
+	{
+		super();
+		this.macAdress = macAdress;
+		this.signalStrenght = signalStrenght;
+	}
+	
 	
 	public String getMacAdress()
 	{
@@ -15,11 +25,11 @@ public class AccessPoint
 		macAdress = value;
 	}
 	
-	public String getSignalStrenght()
+	public int getSignalStrenght()
 	{
 		return signalStrenght;
 	}
-	public void setSignalStrenght(String value)
+	public void setSignalStrenght(int value)
 	{
 		signalStrenght = value;
 	}

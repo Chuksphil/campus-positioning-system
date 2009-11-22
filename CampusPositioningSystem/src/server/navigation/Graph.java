@@ -2,80 +2,66 @@ package server.navigation;
 
 
 
-import java.io.FileInputStream;
+
 import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Collection;
 import java.util.Hashtable;
 import java.util.PriorityQueue;
 
-import com.vividsolutions.jts.geom.Coordinate;
-import com.vividsolutions.jts.geom.Geometry;
-import com.vividsolutions.jts.io.ParseException;
-import com.vividsolutions.jts.io.WKTReader;
 
 
 public class Graph 
 {
-	private ArrayList<Node> nodes = new ArrayList<Node>();
+	private Hashtable<String, Node> nodes = new Hashtable<String, Node>();
 	
-	public ArrayList<Node> getNodes() 
+	public Collection<Node> getNodes()
 	{
-		return nodes;
+		return nodes.values();
+	}
+	
+	public Node getNodeByID(String id)
+	{
+		return nodes.get(id);
 	}
 
-	public void load(String file) throws FileNotFoundException, UnsupportedEncodingException, ParseException
-	{		
-		Hashtable<String, Node> nodesByLoc = new Hashtable<String, Node>();
-		
-		FileInputStream fis = new FileInputStream(file);
-		InputStreamReader in = new InputStreamReader(fis, "UTF-8");		
-		WKTReader reader = new WKTReader();
-		
-		
-		
-		Geometry geo = reader.read(in);
-		while (geo != null)
-		{		
-			Node prevNode = null;
+	public void load(Connection conn) throws FileNotFoundException, UnsupportedEncodingException, SQLException
+	{				
+	
+		PreparedStatement getNodes = conn.prepareStatement("SELECT * FROM wps.nav_nodes;");
+		ResultSet getNodesResult  = getNodes.executeQuery();		
+		while (getNodesResult.next())
+		{
+			String id = getNodesResult.getString("id");		
+			double latitude = getNodesResult.getDouble("lat");
+			double longitude = getNodesResult.getDouble("long");
 			
-			for(Coordinate cor : geo.getCoordinates())
-			{				
-				Double x = (double)cor.x;
-				Double y = (double)cor.y;				
-				
-				String corString = x.toString() + "_" + y.toString();
-				
-				Node n;				
-				if (nodesByLoc.containsKey(corString))
-				{
-					n = nodesByLoc.get(corString); 					
-				}
-				else
-				{
-					n = new Node(x, y);
-					nodes.add(n);
-					nodesByLoc.put(corString, n); 	
-				}
-				
-				if (prevNode != null)
-				{
-					prevNode.getOutgoing().add(new Edge(prevNode, n));
-					n.getOutgoing().add(new Edge(n, prevNode));
-				}
-				prevNode = n;				
-			}
-			
-			
-			geo = reader.read(in);
+			Node newNode = new Node(longitude, latitude);
+			nodes.put(id, newNode);
 		}
 		
 		
-		
+		PreparedStatement getEdges = conn.prepareStatement("SELECT * FROM wps.nav_edges;");
+		ResultSet getEdgesResult  = getEdges.executeQuery();		
+		while (getEdgesResult.next())
+		{			
+			String from = getEdgesResult.getString("from");
+			String to = getEdgesResult.getString("to");
+			
+			Node fromNode = nodes.get(from);
+			Node fromTo= nodes.get(to);
+			
+			fromNode.getOutgoing().add(new Edge(fromNode, fromTo));
+			fromTo.getOutgoing().add(new Edge(fromTo, fromNode));
+		}
 		
 	}
+	
+	
 	
 	public Path dijkstra(Node from, Node to)
 	{		
@@ -84,7 +70,7 @@ public class Graph
 		PriorityQueue<Node> q = new PriorityQueue<Node>(nodes.size(), comparer);		
 		
 		
-		for(Node n : nodes)
+		for(Node n : nodes.values())
 		{			
 			paths.put(n, new Path());
 			

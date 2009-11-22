@@ -25,12 +25,15 @@ public class Client
             BufferedReader in = new BufferedReader(new InputStreamReader(echoSocket.getInputStream()));
                 
 	        //create a sample request
-	        Request req = new Request();
-			AccessPoint a = new AccessPoint();
-			a.setMacAdress("a_mac_addr");
-			a.setSignalStrenght("6");
-			req.accessPoints().add(a);
-			req.setRoomNumber("123");
+	        Request req = new Request();	        
+			req.accessPoints().add( new AccessPoint("00:15:C7:AB:0C:20", 5) );
+	        req.accessPoints().add( new AccessPoint("00:15:C7:AA:DC:C0", 5) );
+	        req.accessPoints().add( new AccessPoint("00:15:C7:AB:04:A0", 5) );
+	        req.accessPoints().add( new AccessPoint("00:18:74:49:4B:10", 5) );
+	        req.accessPoints().add( new AccessPoint("00:15:C7:AA:D4:80", 5) );
+	        req.accessPoints().add( new AccessPoint("00:15:C7:AB:8E:70", 5) );
+	        			
+			req.setRoomNumber("3305");
 	        
 			//send the request
 	        String requestString = req.ToXML();        

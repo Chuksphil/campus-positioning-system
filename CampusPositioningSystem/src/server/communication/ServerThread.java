@@ -15,13 +15,14 @@ import message.ResponseType;
 
 public class ServerThread extends Thread  
 {
-	private Socket socket = null;
-	private Protocol proto = new Protocol();
+	private Socket socket;
+	private Protocol proto;
 
-    public ServerThread(Socket socket) 
+    public ServerThread(Socket socket, Protocol proto) 
     {
 		super("ServerThread");
 		this.socket = socket;
+		this.proto = proto;
     }
 
     public void run() 
