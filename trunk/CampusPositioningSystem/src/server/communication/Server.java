@@ -2,12 +2,25 @@ package server.communication;
 
 import java.io.IOException;
 import java.net.ServerSocket;
+import java.sql.Connection;
+import java.sql.SQLException;
+
+import com.vividsolutions.jts.io.ParseException;
+
+import server.ConnectionParameters;
 
 
 public class Server 
 {
-	public static void main(String[] args) throws IOException 
+	private static Protocol proto;
+	
+	public static void main(String[] args) throws IOException, SQLException, ClassNotFoundException, ParseException 
 	{
+		Connection loadCon = ConnectionParameters.getConnection();
+		proto = new Protocol(loadCon);
+		loadCon.close();
+		
+		
         ServerSocket serverSocket = null;
         boolean listening = true;
 
@@ -23,7 +36,7 @@ public class Server
 
         while (listening)
         {
-        	new ServerThread(serverSocket.accept()).start();
+        	new ServerThread(serverSocket.accept(), proto).start();
         }
 
         serverSocket.close();
