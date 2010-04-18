@@ -3,12 +3,7 @@ package server;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-/**
- * 
- * @author Matt Weber
- * Just a class to make it easy to change the database server params easily
- *
- */
+
 public class ConnectionParameters {
 	
 	/**

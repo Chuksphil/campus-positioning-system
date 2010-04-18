@@ -33,4 +33,9 @@ public class AccessPoint
 	{
 		signalStrenght = value;
 	}
+	
+	public String ToString()
+	{
+		return macAdress + ", " + signalStrenght;
+	}
 }
