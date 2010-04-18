@@ -32,8 +32,11 @@ public class Position
 		double ysum = 0.0;
 		double tot = 0.0;
 		int on = 0;
+		System.out.println("AP Points:");
 		for(AccessPoint ap: list)
 		{				
+			System.out.println(ap.getLocation().toString());
+			
 			int stren = strenghts.get(on);				
 			xsum += (ap.getLocation().getX() * stren);
 			ysum += (ap.getLocation().getY() * stren);

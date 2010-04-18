@@ -1,4 +1,4 @@
-package server.communication;
+package server.transaction;
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -8,9 +8,11 @@ import java.sql.SQLException;
 import com.vividsolutions.jts.io.ParseException;
 
 import server.ConnectionParameters;
+import server.communication.Protocol;
+import server.communication.ServerThread;
 
 
-public class Server 
+public class TransactionServer 
 {
 	private static Protocol proto;
 	
