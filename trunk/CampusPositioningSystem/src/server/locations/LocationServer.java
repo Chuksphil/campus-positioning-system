@@ -62,11 +62,17 @@ public class LocationServer
 		    
 		    if (roomNumber != "")
 		    {
-		    	roomID = m_locations.GetNodeIDByNumber(roomNumber);	    	
+		    	if (m_locations.IsValidRoomNumber(roomNumber))
+		    	{
+		    		roomID = m_locations.GetNodeIDByNumber(roomNumber);
+		    	}
 		    }
 		    else if (roomTag != "")
 		    {
-		    	roomID = m_locations.GetNodeIDByTag(roomTag);		    	
+		    	if (m_locations.IsValidRoomTag(roomTag))
+		    	{
+		    		roomID = m_locations.GetNodeIDByTag(roomTag);
+		    	}
 		    }
 		    
 		    

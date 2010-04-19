@@ -62,8 +62,6 @@ public abstract class AssistantServer {
 	
 	protected String Request(String request) throws Exception
 	{
-		m_socket.setSoTimeout(5000); //5 sec time out
-		
 		//send the request                
         m_out.print(request);
         m_out.print('\0');        
@@ -72,7 +70,6 @@ public abstract class AssistantServer {
 	    //get message back from the assitant
 	    String messageString = ReaderUtils.ReadTo(m_in, '\0');
 	    
-	    m_socket.setSoTimeout(0); //infinate time out
 		
 		return messageString;
 	}
