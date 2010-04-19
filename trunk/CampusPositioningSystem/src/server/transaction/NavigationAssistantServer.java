@@ -23,7 +23,7 @@ public class NavigationAssistantServer extends AssistantServer {
 
 	
 
-	public synchronized String GetPath(String roomID, DPoint location) throws IOException
+	public synchronized String GetPath(String roomID, DPoint location) throws Exception
 	{
 		NavigationRequest navRequest = new NavigationRequest();		
 		navRequest.setRoomID(roomID);

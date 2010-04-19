@@ -35,7 +35,6 @@ public class Transaction
 	 */
 	public Response processInput(Request request) throws Exception 
 	{			
-		Response toRet = new Response();
 		
 		String roomTag = request.getRoomTag();
 		String roomNumber = request.getRoomNumber();
@@ -57,7 +56,7 @@ public class Transaction
 				roomID = locationServer.GetRoomID(roomNumber, roomTag);
 				gotLocation = true;
 			}
-			catch(IOException e)
+			catch(Exception e)
 			{
 				assistanceBank.ReportBadServer(locationServer);
 			}
@@ -76,7 +75,7 @@ public class Transaction
 				position = positionServer.GetPosition(aps);
 				gotPosition = true;
 			}
-			catch(IOException e)
+			catch(Exception e)
 			{
 				assistanceBank.ReportBadServer(positionServer);
 			}
@@ -87,7 +86,7 @@ public class Transaction
 		
 		boolean gotNavigation = false;
 		String path = "";		
-		while (gotPosition == false)
+		while (gotNavigation == false)
 		{
 			NavigationAssistantServer navigationServer = assistanceBank.GetNextNavigationAssistantServer();
 			try
@@ -95,7 +94,7 @@ public class Transaction
 				path = navigationServer.GetPath(roomID, position);
 				gotNavigation = true;
 			}
-			catch(IOException e)
+			catch(Exception e)
 			{
 				assistanceBank.ReportBadServer(navigationServer);
 			}
