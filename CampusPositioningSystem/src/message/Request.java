@@ -30,7 +30,8 @@ public class Request
 	
 	private String roomNumber;
 	private String roomTag;
-	private String userID;
+	private String userID;		
+	
 	
 	
 	
@@ -66,6 +67,8 @@ public class Request
 	{
 		userID = value;
 	}
+	
+	
 
 }
 

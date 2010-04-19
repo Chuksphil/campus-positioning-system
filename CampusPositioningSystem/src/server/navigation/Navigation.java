@@ -6,7 +6,7 @@ import java.io.UnsupportedEncodingException;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-import server.ConnectionParameters;
+import util.ConnectionParameters;
 
 import com.vividsolutions.jts.io.ParseException;
 

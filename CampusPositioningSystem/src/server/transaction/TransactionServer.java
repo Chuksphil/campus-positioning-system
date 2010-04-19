@@ -7,41 +7,30 @@ import java.sql.SQLException;
 
 import com.vividsolutions.jts.io.ParseException;
 
-import server.ConnectionParameters;
-import server.communication.Protocol;
-import server.communication.ServerThread;
+import util.ConnectionParameters;
 
 
 public class TransactionServer 
-{
-	private static Protocol proto;
+{	
+	private static AssistantServerBank serverBank = new AssistantServerBank();
+	
+	
+	public static AssistantServerBank GetAssistantServerBank()
+	{
+		return serverBank;		
+	}
 	
 	public static void main(String[] args) throws IOException, SQLException, ClassNotFoundException, ParseException 
 	{
-		Connection loadCon = ConnectionParameters.getConnection();
-		proto = new Protocol(loadCon);
-		loadCon.close();
 		
+		AssistantListenerThread assitantListener = new AssistantListenerThread(6781);
+		ClientListenerThread clientListener = new ClientListenerThread(6780);
 		
-        ServerSocket serverSocket = null;
-        boolean listening = true;
-
-        try 
-        {
-            serverSocket = new ServerSocket(6780);
-        }
-        catch (IOException e) 
-        {
-            System.err.println("Could not listen on port: 6780.");
-            System.exit(-1);
-        }
-
-        while (listening)
-        {
-        	new ServerThread(serverSocket.accept(), proto).start();
-        }
-
-        serverSocket.close();
+		assitantListener.start();
+		clientListener.start();
+		
+		//delay forever
+		while(true){}
     }
 
 
