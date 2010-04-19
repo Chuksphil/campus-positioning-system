@@ -23,7 +23,7 @@ public class TransactionServer
 	public static void main(String[] args) throws IOException, SQLException, ClassNotFoundException, ParseException 
 	{
 		
-		AssistantListenerThread assitantListener = new AssistantListenerThread(6781);
+		AssistantListenerThread assitantListener = new AssistantListenerThread(6779);
 		ClientListenerThread clientListener = new ClientListenerThread(6780);
 		
 		assitantListener.start();

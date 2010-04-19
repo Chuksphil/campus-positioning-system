@@ -19,7 +19,7 @@ public class LocationAssistantServer extends AssistantServer {
 	}
 	
 	
-	public synchronized String GetRoomID(String number, String tag) throws IOException
+	public synchronized String GetRoomID(String number, String tag) throws Exception
 	{
 		LocationRequest locRequest = new LocationRequest();
 		locRequest.setRoomNumber(number);

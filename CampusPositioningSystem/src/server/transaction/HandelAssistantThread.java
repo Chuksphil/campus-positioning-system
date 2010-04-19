@@ -21,7 +21,7 @@ public class HandelAssistantThread extends Thread
 
     public HandelAssistantThread(Socket socket) 
     {
-		super("ServerThread");
+		super("ServerThread");		
 		this.socket = socket;	
     }
 
@@ -39,7 +39,7 @@ public class HandelAssistantThread extends Thread
 			//create a protocol object from the message
 			String messageString = ReaderUtils.ReadTo(in, '\0');
 			AssistanceRequest req = AssistanceRequest.FromXML(messageString);			    
-			System.out.println("assistance from " + assistantName);
+			System.out.println(req.getServerType() + " assistance from " + assistantName);
 			    
 			ServerType serverType = req.getServerType();
 			    

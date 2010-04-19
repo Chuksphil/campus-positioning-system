@@ -25,7 +25,7 @@ public class PositionAssistantServer extends AssistantServer {
 	}
 	
 	
-	public synchronized DPoint GetPosition(ArrayList<AccessPoint> aps) throws IOException
+	public synchronized DPoint GetPosition(ArrayList<AccessPoint> aps) throws Exception
 	{
 		PositionRequest posRequest = new PositionRequest();		
 		posRequest.accessPoints().addAll(aps);

@@ -32,7 +32,7 @@ public class AssistantListenerThread  extends Thread
         {
         	try 
         	{
-				new HandelAssistantThread(serverSocket.accept());
+				new HandelAssistantThread(serverSocket.accept()).start();
 			}
         	catch (IOException e) 
 			{
