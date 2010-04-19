@@ -1,4 +1,4 @@
-package server.position;
+package util;
 
 public class DPoint 
 {

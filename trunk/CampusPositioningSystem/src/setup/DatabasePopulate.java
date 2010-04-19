@@ -21,8 +21,8 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-import server.ConnectionParameters;
 import server.navigation.Edge;
+import util.ConnectionParameters;
 
 
 import com.vividsolutions.jts.geom.Coordinate;
