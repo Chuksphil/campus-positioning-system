@@ -48,6 +48,7 @@ public class AssistantServerBank {
 	
 	public synchronized LocationAssistantServer GetNextLocationAssistantServer()
 	{
+		if (m_locationServers.isEmpty()){ return null; }		
 		LocationAssistantServer server = m_locationServers.remove();
 		m_locationServers.add(server);
 		return server;
@@ -55,6 +56,7 @@ public class AssistantServerBank {
 
 	public synchronized NavigationAssistantServer GetNextNavigationAssistantServer()
 	{
+		if (m_navigationServers.isEmpty()){ return null; }
 		NavigationAssistantServer server = m_navigationServers.remove();
 		m_navigationServers.add(server);
 		return server;
@@ -62,6 +64,7 @@ public class AssistantServerBank {
 
 	public synchronized PositionAssistantServer GetNextPositionAssistantServer()
 	{
+		if (m_positionServers.isEmpty()){ return null; }
 		PositionAssistantServer server = m_positionServers.remove();
 		m_positionServers.add(server);
 		return server;

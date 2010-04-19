@@ -51,9 +51,23 @@ public class Transaction
 		while (gotLocation == false)
 		{
 			LocationAssistantServer locationServer = assistanceBank.GetNextLocationAssistantServer();
+			if (locationServer == null)
+			{
+				Response resp = new Response();
+				resp.setType(ResponseType.ServerOutError);
+				resp.setMessage("No locations servers responsing.");
+				return resp;
+			}
 			try
 			{						
 				roomID = locationServer.GetRoomID(roomNumber, roomTag);
+				if (roomID == "")
+				{
+					Response resp = new Response();
+					resp.setType(ResponseType.RoomNotFound);
+					resp.setMessage("No room found with that number.");
+					return resp;					
+				}
 				gotLocation = true;
 			}
 			catch(Exception e)
@@ -70,6 +84,13 @@ public class Transaction
 		while (gotPosition == false)
 		{
 			PositionAssistantServer positionServer = assistanceBank.GetNextPositionAssistantServer();
+			if (positionServer == null)
+			{
+				Response resp = new Response();
+				resp.setType(ResponseType.ServerOutError);
+				resp.setMessage("No position servers responsing.");
+				return resp;
+			}
 			try
 			{						
 				position = positionServer.GetPosition(aps);
@@ -89,6 +110,13 @@ public class Transaction
 		while (gotNavigation == false)
 		{
 			NavigationAssistantServer navigationServer = assistanceBank.GetNextNavigationAssistantServer();
+			if (navigationServer == null)
+			{
+				Response resp = new Response();
+				resp.setType(ResponseType.ServerOutError);
+				resp.setMessage("No navigation servers responsing.");
+				return resp;
+			}
 			try
 			{						
 				path = navigationServer.GetPath(roomID, position);
@@ -102,12 +130,12 @@ public class Transaction
 		
 				
 		
-		Response rep = new Response();
-		rep.setType(ResponseType.OK);
-		rep.setMessage(path);
+		Response resp = new Response();
+		resp.setType(ResponseType.OK);
+		resp.setMessage(path);
 		
 		
-		return rep;
+		return resp;
 	}
 	
 }
