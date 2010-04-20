@@ -1,4 +1,4 @@
-package message;
+package util;
 
 public class AccessPoint
 {	

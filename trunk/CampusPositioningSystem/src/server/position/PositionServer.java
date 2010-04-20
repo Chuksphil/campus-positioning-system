@@ -1,47 +1,47 @@
 package server.position;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.net.ServerSocket;
 import java.net.Socket;
 import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
-import message.AccessPoint;
 import message.AssistanceRequest;
-import message.LocationRequest;
-import message.LocationResponse;
 import message.PositionRequest;
 import message.PositionResponse;
-import message.Request;
-import message.Response;
 import message.ServerType;
-
-import com.vividsolutions.jts.io.ParseException;
-
-import server.transaction.Transaction;
-import server.transaction.HandelClientThread;
-import util.ConnectionParameters;
+import util.AccessPoint;
+import util.Config;
 import util.DPoint;
 import util.ReaderUtils;
 
 
 public class PositionServer 
 {
+	private static FingerPrintSearch m_fpSearch;
 	private static Position m_position;
 	private static Connection m_conn;
 	
 	public static void main(String[] args) throws Exception 
-	{
-		m_conn = ConnectionParameters.getConnection();
+	{	
+		String configFile = "config.xml";
+		if (args.length > 0)
+		{
+			configFile = args[0];
+		}		
+		Config config = Config.FromFile(configFile);
+		
+		
+		m_conn = config.getConnection();
 		m_position = new Position();
+		m_fpSearch = new FingerPrintSearch();
+		m_fpSearch.load(m_conn);
+		
 		
 		
 		//create connection to the main server
-		Socket socket = new Socket("127.0.0.1", 6779);
+		Socket socket = new Socket(config.getMasterIP(), config.getAssistantListenPort());
 		PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
 		BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));   
 		
@@ -62,15 +62,17 @@ public class PositionServer
 		    PositionRequest req = PositionRequest.FromXML(messageString);
 		    
 		    ArrayList<AccessPoint> aps = req.accessPoints();
-		    ArrayList<String> apMacs = new ArrayList<String>();
-		    ArrayList<Integer> apStrenghts = new ArrayList<Integer>();
-		    for(AccessPoint ap : aps)
-		    {
-		    	apMacs.add(ap.getMacAdress());
-		    	apStrenghts.add(ap.getSignalStrenght());
-		    }
+//		    ArrayList<String> apMacs = new ArrayList<String>();
+//		    ArrayList<Integer> apStrenghts = new ArrayList<Integer>();
+//		    for(AccessPoint ap : aps)
+//		    {
+//		    	apMacs.add(ap.getMacAdress());
+//		    	apStrenghts.add(ap.getSignalStrenght());
+//		    }
+//		    
+//		    DPoint pos = m_position.getPosition(m_conn,apMacs,apStrenghts);
 		    
-		    DPoint pos = m_position.getPosition(m_conn,apMacs,apStrenghts);
+		    DPoint pos = m_fpSearch.ClosestFingerPrint(aps);
 		    		    
 		    
 		    PositionResponse resp = new PositionResponse();

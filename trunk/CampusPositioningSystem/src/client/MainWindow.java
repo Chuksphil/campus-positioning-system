@@ -1,11 +1,14 @@
 package client;
 
+import gui.MyPanel;
+
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import java.awt.GridBagLayout;
 import java.awt.Shape;
 import java.awt.geom.NoninvertibleTransformException;
+import java.awt.geom.Point2D;
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -13,6 +16,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 
+import com.sun.xml.internal.ws.api.message.Message;
 import com.vividsolutions.jts.geom.Geometry;
 import com.vividsolutions.jts.io.ParseException;
 import com.vividsolutions.jts.io.WKTReader;
@@ -26,6 +30,8 @@ import java.awt.BorderLayout;
 import javax.swing.JTextArea;
 
 import message.Response;
+import message.ResponseType;
+import javax.swing.JRadioButton;
 
 public class MainWindow extends JFrame {
 	
@@ -34,12 +40,18 @@ public class MainWindow extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel jPanel = null;
 	private JPanel jPanel1 = null;
-	private JTextArea jTextArea = null;
+	private JTextArea textArea = null;
 	private JButton jButton1 = null;
 	private JPanel jPanel2 = null;
 	private JPanel MainPanel = null;
 	private JLabel jLabel1 = null;
 	private JButton jButton2 = null;
+
+	private JPanel jPanel3 = null;
+
+	private JRadioButton numberRadio = null;
+
+	private JRadioButton tagRadio = null;
 	/**
 	 * This method initializes jPanel	
 	 * 	
@@ -71,7 +83,8 @@ public class MainWindow extends JFrame {
 			gridBagConstraints.weightx = 1.0;
 			jPanel1 = new JPanel();
 			jPanel1.setLayout(new GridBagLayout());
-			jPanel1.add(getJTextArea(), gridBagConstraints);
+			jPanel1.add(getJPanel3(), new GridBagConstraints());
+			jPanel1.add(getTextArea(), gridBagConstraints);
 			jPanel1.add(getJButton1(), new GridBagConstraints());
 			jPanel1.add(getJButton2(), new GridBagConstraints());
 		}
@@ -81,15 +94,15 @@ public class MainWindow extends JFrame {
 
 
 	/**
-	 * This method initializes jTextArea	
+	 * This method initializes textArea	
 	 * 	
 	 * @return javax.swing.JTextArea	
 	 */
-	private JTextArea getJTextArea() {
-		if (jTextArea == null) {
-			jTextArea = new JTextArea();
+	private JTextArea getTextArea() {
+		if (textArea == null) {
+			textArea = new JTextArea();
 		}
-		return jTextArea;
+		return textArea;
 	}
 
 
@@ -107,14 +120,29 @@ public class MainWindow extends JFrame {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					
 					try {
-						String room = jTextArea.getText();
-						Response resp;					
-						resp = client.QueryRoom(room);					
-						String message = resp.getMessage();					
-						((MyPanel)MainPanel).SetForegroundShapes(message);
-						MainPanel.repaint();
-					} catch (Exception e1) {
-						System.out.print(e1);
+						Response resp = null;
+						if (numberRadio.isSelected())
+						{
+							resp = client.Query(textArea.getText(), "");
+						}
+						else
+						{
+							resp = client.Query("", textArea.getText());
+						}
+						String message = resp.getMessage();	
+						if (resp.getType() == ResponseType.OK)
+						{											
+							((MyPanel)MainPanel).SetForegroundShapes(message);
+							MainPanel.repaint();
+						}
+						else
+						{
+							JOptionPane.showMessageDialog(null, message, "Error", JOptionPane.ERROR_MESSAGE);
+						}
+					} 
+					catch (Exception e1) 
+					{
+						JOptionPane.showMessageDialog(null, "Timeout", "Error", JOptionPane.ERROR_MESSAGE);
 					}
 				}
 			});
@@ -154,6 +182,20 @@ public class MainWindow extends JFrame {
 		if (MainPanel == null) {
 			MainPanel = new MyPanel();
 			MainPanel.setLayout(new GridBagLayout());
+			MainPanel.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+				public void mouseMoved(java.awt.event.MouseEvent e) 
+				{
+					try 
+					{
+						Point2D p = ((MyPanel)MainPanel).GetViewport().toModelPoint(e.getPoint());
+						jLabel1.setText(p.toString());
+					}
+					catch (NoninvertibleTransformException e1) 
+					{
+						
+					}
+				}
+			});
 		}
 		return MainPanel;
 	}
@@ -180,6 +222,66 @@ public class MainWindow extends JFrame {
 			});
 		}
 		return jButton2;
+	}
+
+
+
+	/**
+	 * This method initializes jPanel3	
+	 * 	
+	 * @return javax.swing.JPanel	
+	 */
+	private JPanel getJPanel3() {
+		if (jPanel3 == null) {
+			jPanel3 = new JPanel();
+			jPanel3.setLayout(new GridBagLayout());
+			jPanel3.add(getNumberRadio(), new GridBagConstraints());
+			jPanel3.add(getTagRadio(), new GridBagConstraints());
+		}
+		return jPanel3;
+	}
+
+
+
+	/**
+	 * This method initializes numberRadio	
+	 * 	
+	 * @return javax.swing.JRadioButton	
+	 */
+	private JRadioButton getNumberRadio() {
+		if (numberRadio == null) {
+			numberRadio = new JRadioButton();
+			numberRadio.setText("Number");
+			numberRadio.setSelected(true);
+			numberRadio.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent e) {
+					numberRadio.setSelected(true);
+					tagRadio.setSelected(false);
+				}
+			});
+		}
+		return numberRadio;
+	}
+
+
+
+	/**
+	 * This method initializes tagRadio	
+	 * 	
+	 * @return javax.swing.JRadioButton	
+	 */
+	private JRadioButton getTagRadio() {
+		if (tagRadio == null) {
+			tagRadio = new JRadioButton();
+			tagRadio.setText("Tag");
+			tagRadio.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent e) {
+					numberRadio.setSelected(false);
+					tagRadio.setSelected(true);
+				}
+			});
+		}
+		return tagRadio;
 	}
 
 

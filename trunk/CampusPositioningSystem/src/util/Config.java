@@ -4,9 +4,9 @@ package util;
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 import com.thoughtworks.xstream.XStream;
 
@@ -18,7 +18,7 @@ public class Config
 	static
 	{
 		xstream = new XStream();
-		xstream.alias("request", Config.class);
+		xstream.alias("Config", Config.class);
 	}
 
 	public static Config FromFile(String file)
@@ -44,29 +44,67 @@ public class Config
 	}
 	
 	
-	private String myPort;
-	private String masterPort;
-	private String masterIP;
+	private String dbPass;
+	private String dbUser;
+	private String dbURL;
+	
+	private String masterIP;	
+	private int clientListenPort;
+	private int assistantListenPort;
 	
 	
-	
-	public String getMyPort()
+	public Connection getConnection() throws SQLException
 	{
-		return myPort;
-	}
-	public void setMyPort(String value)
-	{
-		myPort = value;
+		return DriverManager.getConnection(dbURL, dbUser, dbPass);
 	}
 	
-	public String getMasterPort()
+	
+	public int getClientListenPort()
 	{
-		return masterPort;
+		return clientListenPort;
 	}
-	public void setMasterPort(String value)
+	public void setClientListenPort(int value)
 	{
-		masterPort = value;
+		clientListenPort = value;
 	}
+	
+	public int getAssistantListenPort()
+	{
+		return assistantListenPort;
+	}
+	public void setAssistantListenPort(int value)
+	{
+		assistantListenPort = value;
+	}
+	
+
+	public String getDBPass()
+	{
+		return dbPass;
+	}
+	public void setDBPass(String value)
+	{
+		dbPass = value;
+	}
+	
+	public String getDBUser()
+	{
+		return dbUser;
+	}
+	public void setDBUser(String value)
+	{
+		dbUser = value;
+	}
+	
+	public String getDBConnString()
+	{
+		return dbURL;
+	}
+	public void setDBConnString(String value)
+	{
+		dbURL = value;
+	}
+	
 
 	public String getMasterIP()
 	{

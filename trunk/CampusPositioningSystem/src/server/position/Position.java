@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-import util.ConnectionParameters;
 import util.DPoint;
 
 
@@ -25,7 +24,7 @@ public class Position
 	public DPoint getPosition(Connection conn, ArrayList<String> macs, ArrayList<Integer> strenghts) throws Exception
 	{
 		//get the router locations at those mac addresses
-		List<AccessPoint> list = getAPs(conn, macs);
+		List<AccessPointFull> list = getAPs(conn, macs);
 		
 		
 		//calcuale the wieghted average of all router locations
@@ -34,7 +33,7 @@ public class Position
 		double tot = 0.0;
 		int on = 0;
 		System.out.println("AP Points:");
-		for(AccessPoint ap: list)
+		for(AccessPointFull ap: list)
 		{				
 			System.out.println(ap.getLocation().toString());
 			
@@ -61,13 +60,13 @@ public class Position
 	 * @return
 	 * @throws Exception
 	 */
-	private List<AccessPoint> getAPs(Connection conn, ArrayList<String> macs)throws Exception{
+	private List<AccessPointFull> getAPs(Connection conn, ArrayList<String> macs)throws Exception{
 		WKBReader reader = new WKBReader();
 //		String query = "select distinct on (the_geom) asbinary(the_geom) from navteq.streets where ST_Intersects(geomfromtext(\'"+polygon_wgs84.toString()+"\'),the_geom)";
 		String query = "select asbinary(ap.the_geom), ap.apname, ap.building, ap.room, ap.longitude, ap.latitude, ap.first_radio, ap.second_radio,  ap.bld_num, ap.room_num from wps.access_points ap where ap.first_radio = ? or ap.second_radio = ?";
 		PreparedStatement ps = conn.prepareStatement(query);
 		
-		ArrayList<AccessPoint> apList = new ArrayList<AccessPoint>();
+		ArrayList<AccessPointFull> apList = new ArrayList<AccessPointFull>();
 		
 		for(String mac: macs){
 			ps.setString(1, mac);
@@ -77,7 +76,7 @@ public class Position
 						//int roomNumber) {
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()){
-				apList.add(new AccessPoint(
+				apList.add(new AccessPointFull(
 						rs.getString("apname"),
 						rs.getString("building"),
 						rs.getString("room"),

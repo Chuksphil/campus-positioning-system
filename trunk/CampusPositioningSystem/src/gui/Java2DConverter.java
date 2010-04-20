@@ -31,7 +31,7 @@
  * www.vividsolutions.com
  */
 
-package client;
+package gui;
 
 
 import java.awt.Shape;

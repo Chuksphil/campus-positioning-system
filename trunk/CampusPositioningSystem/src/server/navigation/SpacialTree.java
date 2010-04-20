@@ -3,19 +3,27 @@ package server.navigation;
 import java.util.Properties;
 import java.util.Vector;
 
-import com.infomatiq.jsi.IntProcedure;
-import com.infomatiq.jsi.Point;
-import com.infomatiq.jsi.Rectangle;
-import com.infomatiq.jsi.rtree.RTree;
+import org.deegree.io.rtree.HyperBoundingBox;
+import org.deegree.io.rtree.HyperPoint;
+import org.deegree.io.rtree.RTree;
+import org.deegree.io.rtree.RTreeException;
+
+
 
 public class SpacialTree 
 {
 	private Vector<Node> nodes = new Vector<Node>();
-	private RTree rtree = new RTree();
+	private RTree rtree;
 	
 	public SpacialTree()
-	{			
-		rtree.init(new Properties());
+	{				
+		try 
+		{
+			rtree = new RTree(2, 50);
+		}
+		catch (RTreeException e)
+		{
+		}		
 	}
 	
 	public void add(Node n)
@@ -23,11 +31,17 @@ public class SpacialTree
 		float latitude = (float)n.getLatitude();
 		float longitude = (float)n.getLongitude();
 		
-		Rectangle rect = new Rectangle(longitude, latitude, longitude, latitude);		
+		HyperPoint point = new HyperPoint(new double[]{latitude, longitude});
+		HyperBoundingBox rect = new HyperBoundingBox(point, point);
 		
+				
 		//get the id for the node to be added
-		int nextID = nodes.size();		
-		rtree.add(rect, nextID);
+		int nextID = nodes.size();
+		
+		try 
+		{
+			rtree.insert(nextID, rect);
+		} catch (RTreeException e) {}
 		
 		//add node to vector of position nextID
 		nodes.add(n);
@@ -35,28 +49,20 @@ public class SpacialTree
 	
 	public Node nearest(float longitude, float latitude)
 	{
-		Point point = new Point(longitude, latitude);
+		HyperPoint point = new HyperPoint(new double[]{latitude, longitude});
+						
+		double[] nearestResults = null;
+		try 
+		{
+			nearestResults = rtree.nearestNeighbour(point);
+		} catch (RTreeException e) {}
 		
-		GetOneProcedure getOne = new GetOneProcedure();		
-		rtree.nearest(point, getOne, Float.MAX_VALUE);
-		int nearestID = getOne.getId();
+		
+		int nearestID = (int)nearestResults[1];
 		
 		return nodes.get(nearestID);
 	}
 	
-	
-	private class GetOneProcedure implements IntProcedure
-	{
-		private int id;
-		public int getId() {
-			return id;
-		}		
-		public boolean execute(int id) {
-			this.id = id;
-			//prevents further execution (we just want one)
-			return false;
-		}	
-	}
-	
+		
 	
 }

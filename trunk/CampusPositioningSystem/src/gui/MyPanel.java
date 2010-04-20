@@ -1,4 +1,5 @@
-package client;
+package gui;
+
 
 import java.awt.BasicStroke;
 import java.awt.Color;
@@ -25,9 +26,14 @@ public class MyPanel extends JPanel
 	private ArrayList<Geometry> m_backgroundGeoms = new ArrayList<Geometry>();
 	private ArrayList<Geometry> m_foregroundGeoms = new ArrayList<Geometry>();
 	
+	
 	private Viewport m_viewport;
 	private Java2DConverter m_converter;
 	
+	public Viewport GetViewport()
+	{
+		return m_viewport;
+	}
 	
 	public MyPanel()
 	{

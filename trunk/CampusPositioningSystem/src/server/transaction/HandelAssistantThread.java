@@ -6,7 +6,6 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.sql.Connection;
 
-import util.ConnectionParameters;
 import util.ReaderUtils;
 
 import message.AssistanceRequest;

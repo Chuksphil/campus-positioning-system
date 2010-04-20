@@ -6,7 +6,6 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.sql.Connection;
 
-import util.ConnectionParameters;
 import util.ReaderUtils;
 
 import message.Request;
@@ -55,8 +54,8 @@ public class HandelClientThread extends Thread
 				out.flush();
 			    System.out.println("sent response, type " + resp.getType().toString() + " to " + clientName);
 					
-				//if response was OK then quit
-				if (resp.getType() == ResponseType.OK){ break; }
+				//if response was BYE then quit
+				if (resp.getType() == ResponseType.BYE){ break; }
 		    }
 		    
 		    out.close();
@@ -68,7 +67,7 @@ public class HandelClientThread extends Thread
 		}
 		catch (Exception e) 
 		{
-		    e.printStackTrace();
+			System.out.println("connection to " + clientName + " closed");
 		}
 		
     }

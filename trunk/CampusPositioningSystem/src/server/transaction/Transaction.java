@@ -13,9 +13,9 @@ import server.locations.Locations;
 import server.navigation.Navigation;
 import server.navigation.Path;
 import server.position.Position;
+import util.AccessPoint;
 import util.DPoint;
 
-import message.AccessPoint;
 import message.Request;
 import message.Response;
 import message.ResponseType;

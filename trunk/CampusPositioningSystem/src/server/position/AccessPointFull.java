@@ -3,7 +3,7 @@ package server.position;
 import com.vividsolutions.jts.geom.Coordinate;
 import com.vividsolutions.jts.geom.Point;
 
-public class AccessPoint {
+public class AccessPointFull {
 	
 	private String apname;
 	private String building;
@@ -80,7 +80,7 @@ public class AccessPoint {
 	 * @param buildingNumber
 	 * @param roomNumber
 	 */
-	public AccessPoint(String apname, String building, String room,
+	public AccessPointFull(String apname, String building, String room,
 			Coordinate coordinateWGS84, Point location, String firstRadio,
 			String secondRadio, String buildingNumber, String roomNumber) {
 		super();
