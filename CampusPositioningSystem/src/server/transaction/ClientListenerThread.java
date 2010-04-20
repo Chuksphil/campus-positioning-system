@@ -11,7 +11,6 @@ import java.sql.Connection;
 import message.Request;
 import message.Response;
 import message.ResponseType;
-import util.ConnectionParameters;
 import util.ReaderUtils;
 
 public class ClientListenerThread extends Thread  

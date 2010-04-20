@@ -4,27 +4,17 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.net.ServerSocket;
 import java.net.Socket;
-import java.sql.Connection;
 import java.sql.SQLException;
 
-import message.AccessPoint;
 import message.AssistanceRequest;
-import message.LocationRequest;
-import message.LocationResponse;
 import message.NavigationRequest;
 import message.NavigationResponse;
-import message.Request;
-import message.Response;
 import message.ServerType;
+import util.Config;
+import util.ReaderUtils;
 
 import com.vividsolutions.jts.io.ParseException;
-
-import server.transaction.Transaction;
-import server.transaction.HandelClientThread;
-import util.ConnectionParameters;
-import util.ReaderUtils;
 
 
 public class NavigationServer 
@@ -33,11 +23,19 @@ public class NavigationServer
 	
 	public static void main(String[] args) throws IOException, SQLException, ClassNotFoundException, ParseException 
 	{
-		m_navigation = new Navigation(ConnectionParameters.getConnection());
+		String configFile = "config.xml";
+		if (args.length > 0)
+		{
+			configFile = args[0];
+		}		
+		Config config = Config.FromFile(configFile);
+		
+		
+		m_navigation = new Navigation(config.getConnection());
 		
 		
 		//create connection to the main server
-		Socket socket = new Socket("127.0.0.1", 6779);
+		Socket socket = new Socket(config.getMasterIP(), config.getAssistantListenPort());
 		PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
 		BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));   
 		

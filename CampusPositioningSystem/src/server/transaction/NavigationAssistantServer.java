@@ -6,12 +6,12 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.ArrayList;
 
-import message.AccessPoint;
 import message.NavigationRequest;
 import message.NavigationResponse;
 import message.PositionRequest;
 import message.PositionResponse;
 import message.ServerType;
+import util.AccessPoint;
 import util.DPoint;
 
 public class NavigationAssistantServer extends AssistantServer {

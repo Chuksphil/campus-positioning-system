@@ -22,7 +22,7 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import server.navigation.Edge;
-import util.ConnectionParameters;
+import util.Config;
 
 
 import com.vividsolutions.jts.geom.Coordinate;
@@ -33,6 +33,8 @@ import com.vividsolutions.jts.io.WKTReader;
 
 public class DatabasePopulate 
 {
+	
+	private static Connection m_conn;
 
 	public static void populate(String pathsFile, String roomsFile) throws SAXException, IOException, ParserConfigurationException, ParseException, SQLException, ClassNotFoundException
 	{
@@ -140,30 +142,29 @@ public class DatabasePopulate
 		}
 		
 		
-		Connection conn = ConnectionParameters.getConnection();
 		
-		conn.prepareStatement("DELETE FROM wps.rooms;").execute();
-		conn.prepareStatement("DELETE FROM wps.nav_edges;").execute();
-		conn.prepareStatement("DELETE FROM wps.nav_nodes;").execute();
+		m_conn.prepareStatement("DELETE FROM wps.rooms;").execute();
+		m_conn.prepareStatement("DELETE FROM wps.nav_edges;").execute();
+		m_conn.prepareStatement("DELETE FROM wps.nav_nodes;").execute();
 		
 		for (NavNode n : nodesByLoc.values())
 		{
 			String query = n.makeInsertSQL();
-			conn.prepareStatement(query).execute();			
+			m_conn.prepareStatement(query).execute();			
 		}
 		for (NavEdge e : edges)
 		{
 			String query = e.makeInsertSQL();
-			conn.prepareStatement(query).execute();			
+			m_conn.prepareStatement(query).execute();			
 		}
 		for (Room r : rooms)
 		{
 			String query = r.makeInsertSQL();
-			conn.prepareStatement(query).execute();			
+			m_conn.prepareStatement(query).execute();			
 		}
 		
-		conn.commit();
-		conn.close();
+		m_conn.commit();
+		m_conn.close();
 		
 		
 		
@@ -175,9 +176,18 @@ public class DatabasePopulate
 	}
 	
 	public static void main(String[] args) throws IOException, ParseException, SAXException, ParserConfigurationException, SQLException, ClassNotFoundException
-    {	
+    {		
+		String configFile = "config.xml";
+		if (args.length > 0)
+		{
+			configFile = args[0];
+		}		
+		Config config = Config.FromFile(configFile);
+		
 		String paths = "/home/innominate/Documents/School/DatabaseTechnologies/proj/nav_graphs/floor3graph.wkt";
 		String rooms = "/home/innominate/Desktop/153_3_Building_polygons.jml";
+		
+		m_conn = config.getConnection();
 		
 		populate(paths, rooms);
 		

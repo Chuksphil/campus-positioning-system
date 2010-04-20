@@ -6,9 +6,9 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.ArrayList;
 
+import util.AccessPoint;
 import util.DPoint;
 
-import message.AccessPoint;
 import message.LocationRequest;
 import message.LocationResponse;
 import message.PositionRequest;

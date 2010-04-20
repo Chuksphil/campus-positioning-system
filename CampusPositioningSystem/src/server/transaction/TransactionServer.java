@@ -7,7 +7,7 @@ import java.sql.SQLException;
 
 import com.vividsolutions.jts.io.ParseException;
 
-import util.ConnectionParameters;
+import util.Config;
 
 
 public class TransactionServer 
@@ -21,10 +21,19 @@ public class TransactionServer
 	}
 	
 	public static void main(String[] args) throws IOException, SQLException, ClassNotFoundException, ParseException 
-	{
+	{		
+		String configFile = "config.xml";
+		if (args.length > 0)
+		{
+			configFile = args[0];
+		}		
+		Config config = Config.FromFile(configFile);
 		
-		AssistantListenerThread assitantListener = new AssistantListenerThread(6779);
-		ClientListenerThread clientListener = new ClientListenerThread(6780);
+		int assistantListenerPort = config.getAssistantListenPort();
+		int clientListenerPort = config.getClientListenPort(); 
+		
+		AssistantListenerThread assitantListener = new AssistantListenerThread(assistantListenerPort);
+		ClientListenerThread clientListener = new ClientListenerThread(clientListenerPort);
 		
 		assitantListener.start();
 		clientListener.start();

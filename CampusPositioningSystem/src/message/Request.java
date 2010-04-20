@@ -2,6 +2,8 @@ package message;
 
 import java.util.ArrayList;
 
+import util.AccessPoint;
+
 import com.thoughtworks.xstream.XStream;
 
 
