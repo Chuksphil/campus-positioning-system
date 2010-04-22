@@ -24,16 +24,16 @@ public class LocationResponse
 	
 	
 	
-	private String roomID;
+	private String roomNodeID;
 	
 	
-	public String getRoomID()
+	public String getRoomNodeID()
 	{
-		return roomID;
+		return roomNodeID;
 	}
-	public void setRoomID(String value)
+	public void setRoomNodeID(String value)
 	{
-		roomID = value;
+		roomNodeID = value;
 	}
 
 

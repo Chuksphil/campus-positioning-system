@@ -25,7 +25,7 @@ public class PositionAssistantServer extends AssistantServer {
 	}
 	
 	
-	public synchronized DPoint GetPosition(ArrayList<AccessPoint> aps) throws Exception
+	public synchronized String GetPositionNodeID(ArrayList<AccessPoint> aps) throws Exception
 	{
 		PositionRequest posRequest = new PositionRequest();		
 		posRequest.accessPoints().addAll(aps);
@@ -33,13 +33,9 @@ public class PositionAssistantServer extends AssistantServer {
 		String resp = this.Request(posRequest.ToXML());
 		
 		PositionResponse posResp = PositionResponse.FromXML(resp);
+				
 		
-		double latitude = Double.parseDouble(posResp.getLatitude());
-		double longitude = Double.parseDouble(posResp.getLongitude());
-		
-		
-		
-		return new DPoint(latitude, longitude);
+		return posResp.getStartNodeID();
 	}
 	
 

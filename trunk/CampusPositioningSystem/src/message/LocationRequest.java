@@ -24,18 +24,9 @@ public class LocationRequest
 	}
 	
 	
-	private String roomNumber;
 	private String roomTag;	
-		
 	
-	public String getRoomNumber()
-	{
-		return roomNumber;
-	}
-	public void setRoomNumber(String value)
-	{
-		roomNumber = value;
-	}
+	
 	
 	public String getRoomTag()
 	{

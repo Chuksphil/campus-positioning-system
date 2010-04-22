@@ -55,12 +55,11 @@ public class NavigationServer
 		    String messageString = ReaderUtils.ReadTo(in, '\0');
 		    NavigationRequest req = NavigationRequest.FromXML(messageString);
 		    
-		    String roomID = req.getRoomID();
-		    double startLat = Double.parseDouble(req.getLatitude());
-		    double startLong = Double.parseDouble(req.getLongitude());
+		    String startNodeID = req.getStartNodeID();
+		    String roomNodeID = req.getRoomNodeID();
 		    
 		    		    
-		    Path path = m_navigation.getPath(startLong, startLat, roomID);
+		    Path path = m_navigation.getPath(startNodeID, roomNodeID);
 		    String pathString = path.GetPointsString();
 		    
 		    

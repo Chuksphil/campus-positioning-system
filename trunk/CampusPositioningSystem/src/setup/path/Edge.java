@@ -1,4 +1,5 @@
-package server.navigation;
+package setup.path;
+
 
 public class Edge 
 {
@@ -8,8 +9,6 @@ public class Edge
 		this.to = to;
 	}
 	
-	private double distance;
-	private String description; //for now North South East West	
 	private Node from;
 	private Node to;
 	

@@ -24,27 +24,18 @@ public class PositionResponse
 	
 	
 	
-	private String latitude;
-	private String longitude;
+	private String startNodeID;
 	
 	
-	public String getLatitude()
+	public String getStartNodeID()
 	{
-		return latitude;
+		return startNodeID;
 	}
-	public void setLatitude(String value)
+	public void setStartNodeID(String value)
 	{
-		latitude = value;
+		startNodeID = value;
 	}
 
-	public String getLongitude()
-	{
-		return longitude;
-	}
-	public void setLongitude(String value)
-	{
-		longitude = value;
-	}
 
 
 }

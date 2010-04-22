@@ -2,6 +2,8 @@ package server.navigation;
 
 import java.util.ArrayList;
 
+import setup.path.Edge;
+
 public class Path 
 {
 	private ArrayList<Edge> edges = new ArrayList<Edge>();

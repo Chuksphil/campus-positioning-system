@@ -1,0 +1,8 @@
+<Config>
+  <dbUser>user</dbUser>
+  <dbPass>pass</dbPass>
+  <dbURL>jdbc:postgresql://localhost:5432/postgres</dbURL>
+  <masterIP>127.0.0.1</masterIP>
+  <clientListenPort>6780</clientListenPort>
+  <assistantListenPort>6779</assistantListenPort>
+</Config>

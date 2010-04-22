@@ -1,24 +1,12 @@
 package server.transaction;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.ArrayList;
-
-import com.vividsolutions.jts.io.ParseException;
-
-import server.locations.Locations;
-import server.navigation.Navigation;
-import server.navigation.Path;
-import server.position.Position;
-import util.AccessPoint;
-import util.DPoint;
 
 import message.Request;
 import message.Response;
 import message.ResponseType;
+import util.AccessPoint;
+import util.DPoint;
 
 public class Transaction 
 {	
@@ -37,7 +25,6 @@ public class Transaction
 	{			
 		
 		String roomTag = request.getRoomTag();
-		String roomNumber = request.getRoomNumber();
 		ArrayList<AccessPoint> aps = request.accessPoints();
 		
 		
@@ -47,7 +34,7 @@ public class Transaction
 		
 		
 		boolean gotLocation = false;
-		String roomID = "";		
+		String roomNodeID = "";		
 		while (gotLocation == false)
 		{
 			LocationAssistantServer locationServer = assistanceBank.GetNextLocationAssistantServer();
@@ -60,8 +47,8 @@ public class Transaction
 			}
 			try
 			{						
-				roomID = locationServer.GetRoomID(roomNumber, roomTag);
-				if (roomID == "")
+				roomNodeID = locationServer.GetRoomNodeID(roomTag);
+				if (roomNodeID == "" || roomNodeID == null)
 				{
 					Response resp = new Response();
 					resp.setType(ResponseType.RoomNotFound);
@@ -80,7 +67,7 @@ public class Transaction
 		
 		
 		boolean gotPosition = false;
-		DPoint position = null;		
+		String positionNodeID = null;		
 		while (gotPosition == false)
 		{
 			PositionAssistantServer positionServer = assistanceBank.GetNextPositionAssistantServer();
@@ -93,7 +80,7 @@ public class Transaction
 			}
 			try
 			{						
-				position = positionServer.GetPosition(aps);
+				positionNodeID = positionServer.GetPositionNodeID(aps);				
 				gotPosition = true;
 			}
 			catch(Exception e)
@@ -119,7 +106,7 @@ public class Transaction
 			}
 			try
 			{						
-				path = navigationServer.GetPath(roomID, position);
+				path = navigationServer.GetPath(positionNodeID, roomNodeID);
 				gotNavigation = true;
 			}
 			catch(Exception e)
