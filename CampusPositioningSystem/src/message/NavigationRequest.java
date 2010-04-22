@@ -24,39 +24,24 @@ public class NavigationRequest
 	}
 	
 	
-	private String roomID;
+	private String roomNodeID;
+	private String startNodeID;
 
-	private String latitude;
-	private String longitude;
+	public String getRoomNodeID() {
+		return roomNodeID;
+	}
+	public void setRoomNodeID(String roomNodeID) {
+		this.roomNodeID = roomNodeID;
+	}
+	public String getStartNodeID() {
+		return startNodeID;
+	}
+	public void setStartNodeID(String startNodeID) {
+		this.startNodeID = startNodeID;
+	}
 		
 	
-	public String getRoomID()
-	{
-		return roomID;
-	}
-	public void setRoomID(String value)
-	{
-		roomID = value;
-	}
 	
-
-	public String getLatitude()
-	{
-		return latitude;
-	}
-	public void setLatitude(String value)
-	{
-		latitude = value;
-	}
-
-	public String getLongitude()
-	{
-		return longitude;
-	}
-	public void setLongitude(String value)
-	{
-		longitude = value;
-	}
 	
 
 

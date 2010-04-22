@@ -27,7 +27,7 @@ import util.ReaderUtils;
 
 public class LocationServer 
 {
-	private static Locations m_locations;
+	private static RoomsInfo m_roomsInfo;
 	
 	public static void main(String[] args) throws IOException, SQLException, ClassNotFoundException, ParseException 
 	{
@@ -39,7 +39,8 @@ public class LocationServer
 		Config config = Config.FromFile(configFile);
 		
 		
-		m_locations = new Locations(config.getConnection());
+		m_roomsInfo = new RoomsInfo();
+		m_roomsInfo.load(config.getConnection());
 		
 		
 		//create connection to the main server
@@ -62,31 +63,12 @@ public class LocationServer
 		    //get message back from the server
 		    String messageString = ReaderUtils.ReadTo(in, '\0');
 		    LocationRequest req = LocationRequest.FromXML(messageString);
-		    
-		    String roomNumber = req.getRoomNumber();
-		    String roomTag = req.getRoomTag();
-		    
-		    String roomID = "";
-		    
-		    if (roomNumber != "")
-		    {
-		    	if (m_locations.IsValidRoomNumber(roomNumber))
-		    	{
-		    		roomID = m_locations.GetNodeIDByNumber(roomNumber);
-		    	}
-		    }
-		    else if (roomTag != "")
-		    {
-		    	if (m_locations.IsValidRoomTag(roomTag))
-		    	{
-		    		roomID = m_locations.GetNodeIDByTag(roomTag);
-		    	}
-		    }
-		    
+		    		    
+		    String roomTag = req.getRoomTag();		    
+		    String roomNodeID = m_roomsInfo.getNodeID(roomTag);		    
 		    
 		    LocationResponse resp = new LocationResponse();
-		    resp.setRoomID(roomID);
-		    
+		    resp.setRoomNodeID(roomNodeID);		    
 
 	        String responseString = resp.ToXML();        
 	        out.print(responseString);

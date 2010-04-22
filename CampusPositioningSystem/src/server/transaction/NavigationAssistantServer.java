@@ -23,12 +23,11 @@ public class NavigationAssistantServer extends AssistantServer {
 
 	
 
-	public synchronized String GetPath(String roomID, DPoint location) throws Exception
+	public synchronized String GetPath(String startNodeID, String roomNodeID) throws Exception
 	{
-		NavigationRequest navRequest = new NavigationRequest();		
-		navRequest.setRoomID(roomID);
-		navRequest.setLatitude(((Double)location.getX()).toString());
-		navRequest.setLongitude(((Double)location.getY()).toString());
+		NavigationRequest navRequest = new NavigationRequest();
+		navRequest.setStartNodeID(startNodeID);
+		navRequest.setRoomNodeID(roomNodeID);
 		
 		String resp = this.Request(navRequest.ToXML());
 		

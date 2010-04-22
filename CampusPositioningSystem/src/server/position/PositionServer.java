@@ -20,7 +20,6 @@ import util.ReaderUtils;
 public class PositionServer 
 {
 	private static FingerPrintSearch m_fpSearch;
-	private static Position m_position;
 	private static Connection m_conn;
 	
 	public static void main(String[] args) throws Exception 
@@ -34,7 +33,6 @@ public class PositionServer
 		
 		
 		m_conn = config.getConnection();
-		m_position = new Position();
 		m_fpSearch = new FingerPrintSearch();
 		m_fpSearch.load(m_conn);
 		
@@ -72,12 +70,11 @@ public class PositionServer
 //		    
 //		    DPoint pos = m_position.getPosition(m_conn,apMacs,apStrenghts);
 		    
-		    DPoint pos = m_fpSearch.ClosestFingerPrint(aps);
+		    String fingerPrintNodeID = m_fpSearch.ClosestFingerPrintNodeID(aps);
 		    		    
 		    
 		    PositionResponse resp = new PositionResponse();
-		    resp.setLatitude(((Double)pos.getX()).toString());
-		    resp.setLongitude(((Double)pos.getY()).toString());
+		    resp.setStartNodeID(fingerPrintNodeID);
 		    
 
 	        String responseString = resp.ToXML();        

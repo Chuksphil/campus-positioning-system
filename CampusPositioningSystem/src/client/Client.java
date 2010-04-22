@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 import util.AccessPoint;
 import util.ReaderUtils;
+import util.Wireless;
 
 import message.Request;
 import message.Response;
@@ -50,7 +51,7 @@ public class Client
 		}
 	}
 	
-	public Response Query(String room, String tag) throws IOException
+	public Response Query(String tag) throws IOException
 	{		
 		//create a request
         Request req = new Request();	 
@@ -60,7 +61,6 @@ public class Client
         	req.accessPoints().add( accessPoint );        
         }
                         
-		req.setRoomNumber(room);
 		req.setRoomTag(tag);
 		
 		//send the request
@@ -90,14 +90,8 @@ public class Client
     public Client() throws IOException
     {              
 		
-        //default ap data
-        m_accessPoints.add( new AccessPoint("00:15:C7:AB:0C:20", 5) );
-        m_accessPoints.add( new AccessPoint("00:15:C7:AA:DC:C0", 5) );
-        m_accessPoints.add( new AccessPoint("00:15:C7:AB:04:A0", 5) );
-        m_accessPoints.add( new AccessPoint("00:18:74:49:4B:10", 5) );
-        m_accessPoints.add( new AccessPoint("00:15:C7:AA:D4:80", 5) );
-        m_accessPoints.add( new AccessPoint("00:15:C7:AB:8E:70", 5) );
-	    
+        
+    	m_accessPoints.addAll(Wireless.GetVisibleAccesspoints());
 
 		//create connection to server
 		m_socket = new Socket("127.0.0.1", 6780);

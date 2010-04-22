@@ -19,17 +19,16 @@ public class LocationAssistantServer extends AssistantServer {
 	}
 	
 	
-	public synchronized String GetRoomID(String number, String tag) throws Exception
+	public synchronized String GetRoomNodeID(String tag) throws Exception
 	{
-		LocationRequest locRequest = new LocationRequest();
-		locRequest.setRoomNumber(number);
+		LocationRequest locRequest = new LocationRequest();		
 		locRequest.setRoomTag(tag);
 		
 		String resp = this.Request(locRequest.ToXML());
 		
 		LocationResponse locResp = LocationResponse.FromXML(resp);
 		
-		return locResp.getRoomID();
+		return locResp.getRoomNodeID();
 	}
 	
 

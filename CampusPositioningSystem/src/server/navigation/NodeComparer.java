@@ -3,6 +3,8 @@ package server.navigation;
 import java.util.Comparator;
 import java.util.Hashtable;
 
+import setup.path.Node;
+
 public class NodeComparer implements Comparator<Node> 
 {
 	private Hashtable<Node, Double> distances = new Hashtable<Node, Double>();

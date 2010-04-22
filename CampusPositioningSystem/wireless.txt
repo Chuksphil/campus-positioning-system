@@ -1,0 +1,313 @@
+ra0       Scan completed :
+          Cell 01 - Address: 00:16:9C:49:28:11
+                    ESSID:"GTwireless"
+                    Mode:Managed
+                    Channel:11
+                    Quality:29/100  Signal level:-62 dBm  Noise level:-81 dBm
+                    Encryption key:on
+                    Bit Rates:48 Mb/s
+          Cell 01 - Address: 00:16:9C:49:28:10
+                    ESSID:"GTwireless"
+                    Mode:Managed
+                    Channel:11
+                    Quality:100/100  Signal level:-62 dBm  Noise level:-81 dBm
+                    Encryption key:on
+                    Bit Rates:48 Mb/s
+          Cell 01 - Address: 00:15:C7:AB:06:04
+                    ESSID:"GTwireless"
+                    Mode:Managed
+                    Channel:11
+                    Quality:65/100  Signal level:-62 dBm  Noise level:-81 dBm
+                    Encryption key:on
+                    Bit Rates:48 Mb/s
+          Cell 01 - Address: 00:15:C7:AB:06:07
+                    ESSID:"GTwireless"
+                    Mode:Managed
+                    Channel:11
+                    Quality:50/100  Signal level:-62 dBm  Noise level:-81 dBm
+                    Encryption key:on
+                    Bit Rates:48 Mb/s
+          Cell 01 - Address: 00:0B:6B:DE:1D:86
+                    ESSID:"GTwireless"
+                    Mode:Managed
+                    Channel:11
+                    Quality:44/100  Signal level:-62 dBm  Noise level:-81 dBm
+                    Encryption key:on
+                    Bit Rates:48 Mb/s
+          Cell 01 - Address: 00:16:9C:49:28:17
+                    ESSID:"GTwireless"
+                    Mode:Managed
+                    Channel:11
+                    Quality:100/100  Signal level:-62 dBm  Noise level:-81 dBm
+                    Encryption key:on
+                    Bit Rates:48 Mb/s
+          Cell 01 - Address: 00:15:C7:AB:06:01
+                    ESSID:"GTwireless"
+                    Mode:Managed
+                    Channel:11
+                    Quality:20/100  Signal level:-62 dBm  Noise level:-81 dBm
+                    Encryption key:on
+                    Bit Rates:48 Mb/s
+          Cell 01 - Address: 00:15:C7:AB:39:47
+                    ESSID:"GTwireless"
+                    Mode:Managed
+                    Channel:11
+                    Quality:34/100  Signal level:-62 dBm  Noise level:-81 dBm
+                    Encryption key:on
+                    Bit Rates:48 Mb/s
+          Cell 01 - Address: 00:16:9C:49:28:14
+                    ESSID:"GTwireless"
+                    Mode:Managed
+                    Channel:11
+                    Quality:100/100  Signal level:-62 dBm  Noise level:-81 dBm
+                    Encryption key:on
+                    Bit Rates:48 Mb/s
+          Cell 01 - Address: 00:15:C7:AB:39:41
+                    ESSID:"GTwireless"
+                    Mode:Managed
+                    Channel:11
+                    Quality:100/100  Signal level:-62 dBm  Noise level:-81 dBm
+                    Encryption key:on
+                    Bit Rates:48 Mb/s
+          Cell 01 - Address: 00:C0:CA:1E:20:90
+                    ESSID:"GTwireless"
+                    Mode:Managed
+                    Channel:11
+                    Quality:76/100  Signal level:-62 dBm  Noise level:-81 dBm
+                    Encryption key:on
+                    Bit Rates:48 Mb/s
+          Cell 01 - Address: 00:23:69:56:51:AB
+                    ESSID:"GTwireless"
+                    Mode:Managed
+                    Channel:11
+                    Quality:29/100  Signal level:-62 dBm  Noise level:-81 dBm
+                    Encryption key:on
+                    Bit Rates:48 Mb/s
+          Cell 01 - Address: 00:15:C7:AA:D6:67
+                    ESSID:"GTwireless"
+                    Mode:Managed
+                    Channel:11
+                    Quality:24/100  Signal level:-62 dBm  Noise level:-81 dBm
+                    Encryption key:on
+                    Bit Rates:48 Mb/s
+          Cell 01 - Address: 00:15:C7:AB:04:24
+                    ESSID:"GTwireless"
+                    Mode:Managed
+                    Channel:11
+                    Quality:39/100  Signal level:-62 dBm  Noise level:-81 dBm
+                    Encryption key:on
+                    Bit Rates:48 Mb/s
+          Cell 01 - Address: 00:15:C7:AB:04:27
+                    ESSID:"GTwireless"
+                    Mode:Managed
+                    Channel:11
+                    Quality:39/100  Signal level:-62 dBm  Noise level:-81 dBm
+                    Encryption key:on
+                    Bit Rates:48 Mb/s
+          Cell 01 - Address: 00:15:C7:AB:04:20
+                    ESSID:"GTwireless"
+                    Mode:Managed
+                    Channel:11
+                    Quality:39/100  Signal level:-62 dBm  Noise level:-81 dBm
+                    Encryption key:on
+                    Bit Rates:48 Mb/s
+          Cell 01 - Address: 00:16:9C:4A:10:84
+                    ESSID:"GTwireless"
+                    Mode:Managed
+                    Channel:11
+                    Quality:34/100  Signal level:-62 dBm  Noise level:-81 dBm
+                    Encryption key:on
+                    Bit Rates:48 Mb/s
+          Cell 01 - Address: 00:15:C7:AA:D6:61
+                    ESSID:"GTwireless"
+                    Mode:Managed
+                    Channel:11
+                    Quality:24/100  Signal level:-62 dBm  Noise level:-81 dBm
+                    Encryption key:on
+                    Bit Rates:48 Mb/s
+          Cell 01 - Address: 00:16:9C:4A:10:80
+                    ESSID:"GTwireless"
+                    Mode:Managed
+                    Channel:11
+                    Quality:24/100  Signal level:-62 dBm  Noise level:-81 dBm
+                    Encryption key:on
+                    Bit Rates:48 Mb/s
+          Cell 01 - Address: 00:15:C7:AB:04:21
+                    ESSID:"GTwireless"
+                    Mode:Managed
+                    Channel:11
+                    Quality:34/100  Signal level:-62 dBm  Noise level:-81 dBm
+                    Encryption key:on
+                    Bit Rates:48 Mb/s
+          Cell 01 - Address: 00:16:9C:4A:10:87
+                    ESSID:"GTwireless"
+                    Mode:Managed
+                    Channel:11
+                    Quality:24/100  Signal level:-62 dBm  Noise level:-81 dBm
+                    Encryption key:on
+                    Bit Rates:48 Mb/s
+          Cell 01 - Address: 00:15:C7:AA:D6:60
+                    ESSID:"GTwireless"
+                    Mode:Managed
+                    Channel:11
+                    Quality:24/100  Signal level:-62 dBm  Noise level:-81 dBm
+                    Encryption key:on
+                    Bit Rates:48 Mb/s
+          Cell 01 - Address: 00:16:9C:4A:10:81
+                    ESSID:"GTwireless"
+                    Mode:Managed
+                    Channel:11
+                    Quality:24/100  Signal level:-62 dBm  Noise level:-81 dBm
+                    Encryption key:on
+                    Bit Rates:48 Mb/s
+          Cell 01 - Address: 00:1C:10:5A:B6:D7
+                    ESSID:"GTwireless"
+                    Mode:Managed
+                    Channel:11
+                    Quality:15/100  Signal level:-62 dBm  Noise level:-81 dBm
+                    Encryption key:on
+                    Bit Rates:48 Mb/s
+          Cell 01 - Address: 00:13:C4:0D:A8:90
+                    ESSID:"GTwireless"
+                    Mode:Managed
+                    Channel:11
+                    Quality:29/100  Signal level:-62 dBm  Noise level:-81 dBm
+                    Encryption key:on
+                    Bit Rates:48 Mb/s
+          Cell 01 - Address: 00:25:9C:52:76:4A
+                    ESSID:"GTwireless"
+                    Mode:Managed
+                    Channel:11
+                    Quality:29/100  Signal level:-62 dBm  Noise level:-81 dBm
+                    Encryption key:on
+                    Bit Rates:48 Mb/s
+          Cell 01 - Address: 00:15:C7:AA:D1:A0
+                    ESSID:"GTwireless"
+                    Mode:Managed
+                    Channel:11
+                    Quality:65/100  Signal level:-62 dBm  Noise level:-81 dBm
+                    Encryption key:on
+                    Bit Rates:48 Mb/s
+          Cell 01 - Address: 00:15:C7:AA:D5:31
+                    ESSID:"GTwireless"
+                    Mode:Managed
+                    Channel:11
+                    Quality:60/100  Signal level:-62 dBm  Noise level:-81 dBm
+                    Encryption key:on
+                    Bit Rates:48 Mb/s
+          Cell 01 - Address: 00:15:C7:AA:D1:A1
+                    ESSID:"GTwireless"
+                    Mode:Managed
+                    Channel:11
+                    Quality:55/100  Signal level:-62 dBm  Noise level:-81 dBm
+                    Encryption key:on
+                    Bit Rates:48 Mb/s
+          Cell 01 - Address: 00:15:C7:AA:D5:37
+                    ESSID:"GTwireless"
+                    Mode:Managed
+                    Channel:11
+                    Quality:60/100  Signal level:-62 dBm  Noise level:-81 dBm
+                    Encryption key:on
+                    Bit Rates:48 Mb/s
+          Cell 01 - Address: 00:16:9C:48:F1:04
+                    ESSID:"GTwireless"
+                    Mode:Managed
+                    Channel:11
+                    Quality:24/100  Signal level:-62 dBm  Noise level:-81 dBm
+                    Encryption key:on
+                    Bit Rates:48 Mb/s
+          Cell 01 - Address: 00:12:44:B8:9D:70
+                    ESSID:"GTwireless"
+                    Mode:Managed
+                    Channel:11
+                    Quality:24/100  Signal level:-62 dBm  Noise level:-81 dBm
+                    Encryption key:on
+                    Bit Rates:48 Mb/s
+          Cell 01 - Address: 00:15:C7:AA:D5:34
+                    ESSID:"GTwireless"
+                    Mode:Managed
+                    Channel:11
+                    Quality:50/100  Signal level:-62 dBm  Noise level:-81 dBm
+                    Encryption key:on
+                    Bit Rates:48 Mb/s
+          Cell 01 - Address: 00:16:9C:48:F1:07
+                    ESSID:"GTwireless"
+                    Mode:Managed
+                    Channel:11
+                    Quality:24/100  Signal level:-62 dBm  Noise level:-81 dBm
+                    Encryption key:on
+                    Bit Rates:48 Mb/s
+          Cell 01 - Address: 00:15:C7:AA:D5:30
+                    ESSID:"GTwireless"
+                    Mode:Managed
+                    Channel:11
+                    Quality:44/100  Signal level:-62 dBm  Noise level:-81 dBm
+                    Encryption key:on
+                    Bit Rates:48 Mb/s
+          Cell 01 - Address: 00:15:C7:AA:D1:A4
+                    ESSID:"GTwireless"
+                    Mode:Managed
+                    Channel:11
+                    Quality:60/100  Signal level:-62 dBm  Noise level:-81 dBm
+                    Encryption key:on
+                    Bit Rates:48 Mb/s
+          Cell 01 - Address: 00:15:C7:AA:D1:A7
+                    ESSID:"GTwireless"
+                    Mode:Managed
+                    Channel:11
+                    Quality:50/100  Signal level:-62 dBm  Noise level:-81 dBm
+                    Encryption key:on
+                    Bit Rates:48 Mb/s
+          Cell 01 - Address: 00:12:44:B8:B1:A1
+                    ESSID:"GTwireless"
+                    Mode:Managed
+                    Channel:11
+                    Quality:20/100  Signal level:-62 dBm  Noise level:-81 dBm
+                    Encryption key:on
+                    Bit Rates:48 Mb/s
+          Cell 01 - Address: 00:13:7F:BB:43:B1
+                    ESSID:"GTwireless"
+                    Mode:Managed
+                    Channel:11
+                    Quality:24/100  Signal level:-62 dBm  Noise level:-81 dBm
+                    Encryption key:on
+                    Bit Rates:48 Mb/s
+          Cell 01 - Address: 00:15:C7:AA:E3:81
+                    ESSID:"GTwireless"
+                    Mode:Managed
+                    Channel:11
+                    Quality:29/100  Signal level:-62 dBm  Noise level:-81 dBm
+                    Encryption key:on
+                    Bit Rates:48 Mb/s
+          Cell 01 - Address: 00:26:0B:C8:B0:61
+                    ESSID:"GTwireless"
+                    Mode:Managed
+                    Channel:11
+                    Quality:44/100  Signal level:-62 dBm  Noise level:-81 dBm
+                    Encryption key:on
+                    Bit Rates:48 Mb/s
+          Cell 01 - Address: 00:15:C7:AB:3E:11
+                    ESSID:"GTwireless"
+                    Mode:Managed
+                    Channel:11
+                    Quality:20/100  Signal level:-62 dBm  Noise level:-81 dBm
+                    Encryption key:on
+                    Bit Rates:48 Mb/s
+          Cell 01 - Address: 00:15:C7:AB:06:C1
+                    ESSID:"GTwireless"
+                    Mode:Managed
+                    Channel:11
+                    Quality:20/100  Signal level:-62 dBm  Noise level:-81 dBm
+                    Encryption key:on
+                    Bit Rates:48 Mb/s
+          Cell 01 - Address: 00:16:9D:E1:55:F1
+                    ESSID:"GTwireless"
+                    Mode:Managed
+                    Channel:11
+                    Quality:10/100  Signal level:-62 dBm  Noise level:-81 dBm
+                    Encryption key:on
+                    Bit Rates:48 Mb/s
+
+
+
+

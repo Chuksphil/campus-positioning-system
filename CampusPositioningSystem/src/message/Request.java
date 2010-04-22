@@ -29,10 +29,8 @@ public class Request
 	
 	
 	private ArrayList<AccessPoint> accessPoints = new ArrayList<AccessPoint>();
-	
-	private String roomNumber;
 	private String roomTag;
-	private String userID;		
+			
 	
 	
 	
@@ -43,15 +41,6 @@ public class Request
 	}
 	
 	
-	public String getRoomNumber()
-	{
-		return roomNumber;
-	}
-	public void setRoomNumber(String value)
-	{
-		roomNumber = value;
-	}
-	
 	public String getRoomTag()
 	{
 		return roomTag;
@@ -61,14 +50,6 @@ public class Request
 		roomTag = value;
 	}
 
-	public String getUserID()
-	{
-		return userID;
-	}
-	public void setUserID(String value)
-	{
-		userID = value;
-	}
 	
 	
 

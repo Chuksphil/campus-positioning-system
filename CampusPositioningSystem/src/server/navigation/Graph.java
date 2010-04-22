@@ -13,6 +13,9 @@ import java.util.Collection;
 import java.util.Hashtable;
 import java.util.PriorityQueue;
 
+import setup.path.Edge;
+import setup.path.Node;
+
 
 
 public class Graph 
@@ -40,7 +43,7 @@ public class Graph
 			double latitude = getNodesResult.getDouble("lat");
 			double longitude = getNodesResult.getDouble("long");
 			
-			Node newNode = new Node(longitude, latitude);
+			Node newNode = new Node(latitude, longitude);
 			nodes.put(id, newNode);
 		}
 		
