@@ -1,0 +1,1 @@
+navigation system for building interiors uses wifi to determine users location.  Users can navigate to rooms given room number or professor/class name.
